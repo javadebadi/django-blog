@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from blog.models import Post
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
@@ -12,5 +13,10 @@ def about(request):
 def contact(request):
     return render(request, 'blog/contact.html', context={})
 
-def post(request):
-    return render(request, 'blog/post.html', context={})
+def post_list(request):
+    posts = Post.objects.all()
+    return render(request, 'blog/index.html', context={'posts':posts})
+
+def post_detail(request, pk=None):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/post.html', context={'post':post})
