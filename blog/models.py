@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -15,6 +16,12 @@ class Post(models.Model):
     )
 
     text = models.TextField()
+
+    image = models.ImageField(
+        '/blog/images/',
+        null=True,
+        blank=True,
+        )
 
     publish_date = models.DateField(
         auto_now=True,
