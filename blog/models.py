@@ -14,6 +14,8 @@ class Post(models.Model):
         blank=True,
     )
 
+    text = models.TextField()
+
     publish_date = models.DateField(
         auto_now=True,
     )
