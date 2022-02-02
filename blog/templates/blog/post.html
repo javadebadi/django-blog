@@ -29,7 +29,25 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                {{post.text|safe}}
+                {% for text_tag in texts_tag %}
+                {% if  text_tag.tag == 'p' %}
+                <p>{{text_tag.text}}</p>
+                {% elif text_tag.tag == 'h1' %}
+                <h1>{{text_tag.text}}</h1>
+                {% elif text_tag.tag == 'h2' %}
+                <h2 class="section-heading">{{text_tag.text}}</h2>
+                {% elif text_tag.tag == 'h3' %}
+                <h3>{{text_tag.text}}</h3>
+                {% elif text_tag.tag == 'h4' %}
+                <h4>{{text_tag.text}}</h4>
+                {% elif text_tag.tag == 'h5' %}
+                <h5>{{text_tag.text}}</h5>
+                {% elif text_tag.tag == 'h6' %}
+                <h6>{{text_tag.text}}</h6>
+                {% elif text_tag.tag == 'blockquote' %}
+                <blockquote class="blockquote">{{text_tag.text}}</blockquote>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from blog.models import Post
 from django.shortcuts import get_object_or_404
+from blog.logic import BlogTokenize
 
 # Create your views here.
 def home(request):
@@ -19,4 +20,5 @@ def post_list(request):
 
 def post_detail(request, pk=None):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post.html', context={'post':post})
+    texts_tag = BlogTokenize(post.text).tokenize()
+    return render(request, 'blog/post.html', context={'post':post, 'texts_tag':texts_tag})
