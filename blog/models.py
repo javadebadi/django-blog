@@ -39,3 +39,7 @@ class Post(models.Model):
 
     class Meta:
         db_table = 'post'
+        ordering = (
+            '-publish_date',  # Descending -> New publish posts first
+            '-id',
+        )
