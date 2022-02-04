@@ -5,7 +5,7 @@ from blog.logic import BlogTokenize
 
 # Create your views here.
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all()[:2]
     return render(request, 'blog/index.html', context={'posts':posts})
 
 def about(request):
@@ -16,7 +16,7 @@ def contact(request):
 
 def post_list(request):
     posts = Post.objects.all()
-    return render(request, 'blog/index.html', context={'posts':posts})
+    return render(request, 'blog/post_list.html', context={'posts':posts})
 
 def post_detail(request, pk=None):
     post = get_object_or_404(Post, pk=pk)
