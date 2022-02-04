@@ -26,7 +26,11 @@ def post_list(request):
     except PageNotAnInteger:
         page = paginator.page(1)
     posts = page.object_list
-    return render(request, 'blog/post_list.html', context={'posts':posts})
+    context = {
+        'posts': posts,
+        'page': page,
+    }
+    return render(request, 'blog/post_list.html', context=context)
 
 def post_detail(request, pk=None):
     post = get_object_or_404(Post, pk=pk)

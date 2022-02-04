@@ -1,0 +1,10 @@
+<!-- Pager-->
+<div class="d-flex justify-content-around mb-4">
+    {% if page.has_previous %}
+    <a class="btn btn-primary text-uppercase" href="?page={{page.previous_page_number}}">&larr; Newer Posts</a>
+    {% endif %}
+    <a class="btn btn-primary text-uppercase" href="?page={{page.number}}">Page {{page.number}} of {{page.paginator.num_pages}}</a>
+    {% if page.has_next %}
+    <a class="btn btn-primary text-uppercase" href="?page={{page.next_page_number}}">Older Posts →</a>
+    {% endif %}
+</div>
