@@ -1,8 +1,13 @@
 from django.shortcuts import render
-from blog.models import Post
+from blog.models import (
+    Post,
+    ContactMessage,
+)
 from django.shortcuts import get_object_or_404
 from blog.logic import BlogTokenize
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from blog.forms import ContactMessageForm
+
 
 # Create your views here.
 def home(request):
@@ -13,7 +18,21 @@ def about(request):
     return render(request, 'blog/about.html', context={})
 
 def contact(request):
-    return render(request, 'blog/contact.html', context={})
+    if request.method == 'POST':
+        form = ContactMessageForm(request.POST)
+        if form.is_valid():
+            print(" =============== Clean Data =================")
+            print(form.cleaned_data)
+            ContactMessage.objects.create(
+                name=form.cleaned_data.get("name"),    
+                email=form.cleaned_data.get("email"),    
+                message=form.cleaned_data.get("message"),    
+                phone_number=form.cleaned_data.get("phone_number"),    
+            )
+        return render(request, 'blog/thanks.html', context={})
+    if request.method == 'GET':
+        form = ContactMessageForm()
+        return render(request, 'blog/contact.html', context={'form': form})
 
 def post_list(request):
     all_posts = Post.objects.all()
