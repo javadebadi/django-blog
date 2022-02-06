@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from blog.models import (
     Post,
@@ -29,7 +30,9 @@ def contact(request):
                 message=form.cleaned_data.get("message"),    
                 phone_number=form.cleaned_data.get("phone_number"),    
             )
-        return render(request, 'blog/thanks.html', context={})
+            return render(request, 'blog/thanks.html', context={})
+        else:
+            return HttpResponse('<p>Invalid Data</p>')
     if request.method == 'GET':
         form = ContactMessageForm()
         return render(request, 'blog/contact.html', context={'form': form})
