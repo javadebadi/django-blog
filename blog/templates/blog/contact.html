@@ -73,8 +73,27 @@
                     </form> {% endcomment %}
                     <form action="{% url 'blog_contact' %}" method='post'>
                         {% csrf_token %}
-                        {{form}}
-                        <input type="submit" value="Send">
+                        <div class="form-floating">
+                            {{ form.name }}
+                            <label for="{{ form.name.id_for_label }}">Your Name</label>
+                            {{ form.name.errors }}
+                        </div>
+                        <div class="form-floating">
+                            {{ form.email }}
+                            <label for="{{ form.email.id_for_label }}">Email</label>
+                            {{ form.email.errors }}
+                        </div>
+                        <div class="form-floating">
+                            {{ form.phone_number }}
+                            <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                            {{ form.phone_number.errors }}
+                        </div>
+                        <div class="form-floating">
+                            {{ form.message }}
+                            <label for="{{ form.message.id_for_label }}">Message</label>
+                            {{ form.message.errors }}
+                        </div>
+                        <input class="btn btn-primary text-uppercase disabled" type="submit" value="Send">
                     </form>
                 </div>
             </div>
