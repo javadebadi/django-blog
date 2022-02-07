@@ -130,8 +130,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Email settings
-EMAIL_HOST = 'smtp.google.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'javad.ebadi.1990.smtp@gmail.com'
-EMAIL_HOST_PASSWORD = 'iopjklnm,12'  # I will change this password
+EMAIL_HOST_PASSWORD = 'iopjklnm,12'  # I will change my password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
