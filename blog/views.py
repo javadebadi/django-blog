@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from blog.logic import BlogTokenize
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from blog.forms import ContactMessageForm
+from django.core.mail import EmailMessage
 
 
 # Create your views here.
@@ -30,6 +31,23 @@ def contact(request):
                 message=form.cleaned_data.get("message"),    
                 phone_number=form.cleaned_data.get("phone_number"),    
             )
+            # send email
+            email = EmailMessage(
+                '[Javad Blog]: Automatic Django Email',  # subject
+                f"""
+----------------------------------------------
+Sender Email: {form.cleaned_data.get("email")}
+----------------------------------------------
+
+{form.cleaned_data.get("message")}
+""",   # body of the email
+                'javad.ebadi.1990.smtp@gmail.com',  # sender 
+                [
+                    'javad.ebadi.1990.smtp@gmail.com',
+                    'javad.ebadi.1990@gmail.com',
+                ],
+            )
+            email.send()
             return render(request, 'blog/thanks.html', context={})
         else:
             return HttpResponse('<p>Invalid Data</p>')
