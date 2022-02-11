@@ -2,6 +2,7 @@ from django.contrib import admin
 from blog.models import (
     Post,
     ContactMessage,
+    Tag,
     )
 
 # Register your models here.
@@ -14,3 +15,7 @@ class PostAdmin(admin.ModelAdmin):
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'insert_time')
     list_filter = ('email',)
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')

@@ -45,6 +45,21 @@ class Post(models.Model):
         )
 
 
+# create tag model
+class Tag(models.Model):
+
+    name = models.CharField(max_length=32)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        db_table = 'tag'
+        ordering = (
+            'name',
+        )
+
+
 # create model for contact message
 class ContactMessage(models.Model):
 
