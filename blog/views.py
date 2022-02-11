@@ -55,8 +55,11 @@ Sender Email: {form.cleaned_data.get("email")}
         form = ContactMessageForm()
         return render(request, 'blog/contact.html', context={'form': form})
 
-def post_list(request):
-    all_posts = Post.objects.all()
+def post_list(request, tag_name=None):
+    if tag_name is None:
+        all_posts = Post.objects.all()
+    else:
+        all_posts = Post.objects.filter(tags__name__iexact=tag_name)
     paginator = Paginator(all_posts, 3)
     page_number = request.GET.get("page")
     try:
