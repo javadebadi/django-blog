@@ -1,6 +1,6 @@
-from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
+from .tag import Tag
 
 # Create your models here.
 class Post(models.Model):
@@ -33,6 +33,11 @@ class Post(models.Model):
         db_column='author_id',
         related_name='posts',
     )
+
+    tags = models.ManyToManyField(
+        Tag,
+        related_name='tags',
+        )
 
     def __str__(self) -> str:
         return self.title
